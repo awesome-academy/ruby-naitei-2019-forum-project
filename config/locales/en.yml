@@ -9,11 +9,15 @@ en:
   your_profile: "Your Profile"
   search: "Search"
   submit: "Submit"
+  sub_forums: "Sub Forums"
+  join: "Join"
+  create_post: "Create Post"
   static_pages:
     home:
       trending_today: "Trending Today"
       popular: "Popular"
       trending_forums: "Trending Forums"
+      create_sub_forum: "Create Sub Forum"
   sessions:
     new:
       forget_password: "Forgot password"
@@ -33,14 +37,15 @@ en:
       account_activation: "Account Activation"
     password_reset:
       password_reset: "Password reset"
-      reset_password: "Reset passowrd"
+      reset_password: "Reset password"
   account_activations:
     edit:
       account_activated: "Account activated"
       invalid_activation_link: "Invalid activation link"
   password_resets:
+    email_not_found: "Email not found"
+    reset_password_expired: "Reset password token is expired"
     new:
       submit: "Submit"
     create:
       password_reset: "Check email for password reset guidelines"
-      email_not_found: "Email not found"

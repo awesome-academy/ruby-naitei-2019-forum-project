@@ -18,6 +18,24 @@
     <% end %>
   </div>
   <div class="col-3">
-    <%= render "shared/trending_forums" %>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <%= link_to t("create_post"), nil,
+                class: "btn btn-primary", style: "width: 100%" %>
+        </p>
+        <%= link_to t(".create_sub_forum"), new_sub_forum_path,
+              class: "btn btn-primary", style: "width: 100%" %>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        <%= t "static_pages.home.trending_forums" %>
+      </div>
+      <ul class="list-group list-group-flush">
+        <%= render partial: "shared/trending_sub_forum", collection: @trending_sub_forums %>
+      </ul>
+    </div>
   </div>
 </div>
