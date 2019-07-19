@@ -1,0 +1,23 @@
+<div class="row has-margin-row">
+  <h4>Trending Today</h4>
+</div>
+<div class="row">
+  <div class="card-deck">
+    <% 4.times do %>
+      <%= render "shared/trending_post" %>
+    <% end %>
+  </div>
+</div>
+<div class="row has-margin-row">
+  <h4>Popular</h4>
+</div>
+<div class="row">
+  <div class="col-9 no-side-padding">
+    <% 10.times do %>
+      <%= render "shared/popular_post" %>
+    <% end %>
+  </div>
+  <div class="col-3">
+    <%= render "shared/trending_forums" %>
+  </div>
+</div>

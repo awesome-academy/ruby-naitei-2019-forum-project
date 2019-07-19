@@ -27,3 +27,6 @@
 
 # Ignore config/database.yml
 /config/database.yml
+
+# Ignore RubyMine
+.idea/
