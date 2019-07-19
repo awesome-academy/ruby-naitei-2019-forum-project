@@ -1,0 +1,9 @@
+<h1>
+  <% if @user.avatar? %>
+    <%= image_tag @user.avatar.url %>
+  <% else %>
+    <%= image_tag "default.png" %>
+  <% end %>
+  <%= @user.name %>
+  <%= @user.email %>
+</h1>
