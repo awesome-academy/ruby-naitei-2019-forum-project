@@ -5,8 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "bcrypt"
+gem "carrierwave", "1.2.2"
 gem "coffee-rails", "~> 4.2"
+gem "config"
 gem "jbuilder", "~> 2.5"
+gem "mini_magick", "4.7.0"
 gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.6"
 gem "rubocop", "~> 0.54.0", require: false
