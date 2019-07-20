@@ -1,17 +1,23 @@
-<h1><%= t ".sign_up" %></h1>
+<%= form_for(@user, html: {class: "form-login-signup"}) do |f| %>
+  <h2><%= t "brand" %></h2>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
 
-<%= form_for(@user) do |f| %>
-  <%= f.label t(".name") %>
-  <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control input-email" %>
+  </div>
 
-  <%= f.label t(".email") %>
-  <%= f.email_field :email %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control input-password" %>
+  </div>
 
-  <%= f.label t(".password") %>
-  <%= f.password_field :password %>
-
-  <%= f.label t(".confirmation") %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit t(".create_my_account") %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, t(".confirmation") %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <%= f.submit t(".create_my_account"), class: "btn btn-lg btn-primary btn-block" %>
 <% end %>

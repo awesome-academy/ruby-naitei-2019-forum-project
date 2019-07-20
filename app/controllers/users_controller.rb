@@ -18,14 +18,14 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def load_user
     @user = User.find_by id: params[:id]
     redirect_to root_url unless @user
-  end  
+  end
 
   def user_params
-    params.require(:user).
-      permit %w(avatar name email password password_confirmation)
+    params.require(:user)
+          .permit %w(avatar name email password password_confirmation)
   end
 end

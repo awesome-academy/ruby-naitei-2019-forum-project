@@ -6,10 +6,12 @@ git_source(:github) do |repo_name|
 end
 
 gem "bcrypt"
+gem "bootstrap", "~> 4.3.1"
 gem "carrierwave", "1.2.2"
 gem "coffee-rails", "~> 4.2"
 gem "config"
 gem "jbuilder", "~> 2.5"
+gem "jquery-rails"
 gem "mini_magick", "4.7.0"
 gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.6"
