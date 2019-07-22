@@ -3,9 +3,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by email: params[:session][:email]
-    if user&.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password])
       log_in user
-      params[:session][:remember_me] == Settings.check_box_checked? ? remember(user) : forget(user)
+      if params[:session][:remember_me] == Settings.check_box_checked?
+        remember(user)
+      else
+        forget(user)
+      end
       redirect_to user
     else
       render :new

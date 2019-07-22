@@ -1,0 +1,21 @@
+@import 'bootstrap';
+
+$light-blue: #DAE0E6;
+
+.no-side-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.has-margin-row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: $light-blue;
+}
+
+.popular-post{
+  margin-bottom: 20px;
+}
