@@ -6,4 +6,10 @@
   <% end %>
   <%= @user.name %>
   <%= @user.email %>
+  <% if @user.sub_forums.any? %>
+    <h3>(<%= "#{t :sub_forums} #{@user.sub_forums.size}" %>)</h3>
+    <ol class="sub_forum_preview">
+      <%= render partial: "sub_forums/sub_forum_preview", collection: @sub_forums %>
+    </ol>
+  <% end %>
 </h1>

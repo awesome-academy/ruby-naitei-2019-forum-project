@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: %w(show)
+  before_action :load_user, only: :show
 
-  def show; end
+  def show
+    @sub_forums = @user.sub_forums
+  end
 
   def new
     @user = User.new

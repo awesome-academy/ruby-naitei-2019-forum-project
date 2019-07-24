@@ -35,3 +35,6 @@ config/settings/*
 
 # Ignore RubyMine
 .idea/
+
+#Ignore picture
+public/uploads/

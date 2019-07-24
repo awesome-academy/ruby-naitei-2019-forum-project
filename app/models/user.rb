@@ -3,6 +3,7 @@ class User < ApplicationRecord
   before_save :email_downcase
   before_create :create_activation_digest
   mount_uploader :avatar, AvatarUploader
+  has_many :sub_forums, dependent: :destroy
   validates :name,
     presence: true,
     length: {maximum: Settings.maximum_name_length}
@@ -50,10 +51,12 @@ class User < ApplicationRecord
 
   def create_reset_digest
     self.reset_token = User.new_token
-    self.update_attributes reset_digest: User.digest(reset_token),
-                           reset_sent_at: Time.zone.now
+    update_attributes(
+      reset_digest: User.digest(reset_token),
+      reset_sent_at: Time.zone.now
+    )
   end
-  
+
   def password_reset_expired?
     reset_sent_at < Settings.password_expired.hours.ago
   end
