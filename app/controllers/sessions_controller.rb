@@ -3,15 +3,19 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by email: params[:session][:email]
+
     if user&.authenticate(params[:session][:password])
-      log_in user
-      if params[:session][:remember_me] == Settings.check_box_checked?
-        remember(user)
+      if user.activated?
+        log_in user
+        params[:session][:remember_me] == 1 ? remember(user) : forget(user)
+        redirect_to (session[:forwarding_url] || root_url)
+        session.delete :forwarding_url
       else
-        forget(user)
+        flash[:warning] = t ".check_email_for_account_activation"
+        redirect_to root_url
       end
-      redirect_to user
     else
+      flash.now[:danger] = t ".invalid_email_password_combination"
       render :new
     end
   end

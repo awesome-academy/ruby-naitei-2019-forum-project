@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :members, dependent: :destroy
+  has_many :joined_forums, through: :members, source: :sub_forum
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :email_downcase
   before_create :create_activation_digest
@@ -61,10 +64,24 @@ class User < ApplicationRecord
     reset_sent_at < Settings.password_expired.hours.ago
   end
 
+  def join sub_forum
+    joined_forums << sub_forum
+    member = Member.find_by user_id: id, sub_forum_id: sub_forum.id
+    member.update_attributes user_type: Settings.normal_user
+  end
+
+  def leave sub_forum
+    joined_forums.delete sub_forum
+  end
+
+  def joined_forums? sub_forum
+    joined_forums.include? sub_forum
+  end
+
   private
 
   def email_downcase
-    !email.downcase
+    email.downcase!
   end
 
   def create_activation_digest

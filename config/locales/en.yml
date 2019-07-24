@@ -12,6 +12,8 @@ en:
   sub_forums: "Sub Forums"
   join: "Join"
   create_post: "Create Post"
+  delete: "Delete"
+  confirm: "You sure?"
   static_pages:
     home:
       trending_today: "Trending Today"
@@ -49,3 +51,12 @@ en:
       submit: "Submit"
     create:
       password_reset: "Check email for password reset guidelines"
+      email_not_found: "Email not found"
+  members:
+    leave:
+      leave: "LEAVE"
+    join:
+      join: "JOIN"
+  shared:
+    trending_sub_forum:
+      join: "JOIN"
