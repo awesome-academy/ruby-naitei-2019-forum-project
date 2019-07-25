@@ -1,0 +1,4 @@
+<%= form_for current_user.members.create, remote: true do |f| %>
+  <%= hidden_field_tag :sub_forum_id, sub_forum_id %>
+  <%= f.submit t(".join"), class: "btn btn-primary float-right" %>
+<% end %>

@@ -1,4 +1,7 @@
 class SubForum < ApplicationRecord
+  has_many :members, dependent: :destroy
+  has_many :users, through: :members
+
   belongs_to :user
   validates :user_id,
     presence: true
@@ -6,5 +9,5 @@ class SubForum < ApplicationRecord
     presence: true,
     length: {maximum: Settings.maximum_name_length},
     uniqueness: {case_sensitive: true}
-  scope :trending_forums,-> {last(Settings.number_of_trending_forums).reverse}
+  scope :trending_forums, ->{last(Settings.number_of_trending_forums).reverse}
 end

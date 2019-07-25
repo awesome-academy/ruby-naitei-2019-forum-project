@@ -5,4 +5,8 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(sub_forum_preview.created_at) %> ago.
   </span>
+  <% if current_user %>
+    <%= link_to :delete, sub_forum_preview, method: :delete,
+                data: {confirm: t(:confirm)} %>
+  <% end %>
 </li>

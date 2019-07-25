@@ -8,7 +8,7 @@ class SubForumsController < ApplicationController
 
   def create
     @sub_forum = current_user.sub_forums.build sub_forum_params
-    
+
     if @sub_forum.save
       redirect_to @sub_forum
     else
