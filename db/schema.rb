@@ -12,6 +12,13 @@ ActiveRecord::Schema.define(version: 20190722020456) do
     t.index ["user_type"], name: "index_members_on_user_type"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sub_forums", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -37,4 +44,5 @@ ActiveRecord::Schema.define(version: 20190722020456) do
     t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
 end

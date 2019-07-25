@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   resources :sub_forums, except: :edit
   resources :members, only: %i(create destroy)
   resources :password_resets, only: %i(new create edit update)
+  resources :members, only: %i(create destroy)
+  get "/submit", to: "posts#new"
+  post "/submit", to: "posts#create"
+  resources :posts, only: %i(show update)
+  get "/search", to: "searchs#new"
 end
