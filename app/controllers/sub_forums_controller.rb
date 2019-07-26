@@ -31,7 +31,7 @@ class SubForumsController < ApplicationController
 
   def check_correct_user
     return if current_user == @sub_forum.user
-    flash[:danger] = t ".not_authorized"
+    flash[:danger] = t "not_authorized"
     redirect_to root_url
   end
 

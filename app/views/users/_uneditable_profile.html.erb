@@ -1,0 +1,13 @@
+<div class="card border border-info" style="margin-top: 30px; margin-bottom: 50px">
+  <div style="min-height: 200px">
+    <% if @user.avatar? %>
+      <%= image_tag @user.avatar.url, class: "card-img-top" %>
+    <% else %>
+      <%= image_tag "default.png", class: "card-img-top" %>
+    <% end %>
+  </div>
+  <div class="card-body " style="padding: 10px">
+    <p><%= @user.name %></p>
+    <p><%= "#{t(".joined_at")} #{@user.created_at.to_date}" %></p>
+  </div>
+</div>

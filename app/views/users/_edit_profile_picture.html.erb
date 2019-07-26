@@ -1,0 +1,25 @@
+<div class="card border-info" style="margin-top: 30px;">
+  <div style="min-height: 200px">
+    <% if @user.avatar? %>
+      <%= image_tag @user.avatar.url, class: "card-img-top" %>
+    <% else %>
+      <%= image_tag "default.png", class: "card-img-top" %>
+    <% end %>
+  </div>
+  <div class="card-body" style="padding: 10px">
+    <%= form_for(@user) do |f| %>
+      <div class="form-group row">
+        <div class="col-8">
+          <div class="custom-file">
+            <%= f.text_field :name, visibility: "hidden" %>
+            <%= f.file_field :avatar, class: "custom-file-input" %>
+            <label class="custom-file-label" for="user_avatar">Choose picture</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <%= f.submit "Change", class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
