@@ -7,21 +7,19 @@ module SearchsHelper
   # resources: ActiveRecord name
   # *search_field list of attributes with weighted value
   # output:
-  # HashArray {attr: attr_value}
+  # array of active record
   # #####
 
-  def search pat, ngram, resources, *search_field
+  def search pat, ngram, resources, n_output, *search_field
     attrs, w = search_field.transpose
 
-    resources = resources.select(*attrs).map do |resource|
-      attrs.map{|e| resource.send(e)}.zip(w)
+    ret = resources.select(*attrs).map do |res|
+      attrs.map{|e| res.send(e)}.zip(w)
     end
 
-    resources = resources.sort_by{|e| n_gram_val pat, ngram, e}.reverse!
+    ret = ret.sort_by{|e| n_gram_val pat, ngram, e}.reverse![0..n_output]
     
-    resources = resources.map &->(resource){
-      Hash[resource.each_with_index.map &->(e,idx){[attrs[idx], e[0]]}]
-    }
+    ret = ret.map &->(res){resources.find_by id: res[0]}
   end
 
   private

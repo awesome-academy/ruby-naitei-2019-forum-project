@@ -13,7 +13,7 @@ class SubForum < ApplicationRecord
   scope :trending_forums,-> {last(Settings.number_of_trending_forums).reverse}
 
   def self.search q
-    ApplicationController.helpers.search q, ngram = 3, SubForum,
+    ApplicationController.helpers.search q, ngram = 3, SubForum, Settings.relevant_record,
       [:id, 0], [:name, Settings.sub_forum.name],
       [:description, Settings.sub_forum.description]
   end
