@@ -1,0 +1,12 @@
+<%= t ".forum" %>
+<%= paginate @forums %>
+  <ol>
+    <%= render partial: "sub_forums/sub_forum", collection: @forums %>
+  </ol>
+
+<%= t".post" %>
+<%= paginate @posts %>
+  <ol>
+    <%= render partial: "posts/_post", collection: @posts %>
+  </ol>
+

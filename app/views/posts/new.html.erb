@@ -1,0 +1,5 @@
+<%= form_for :posts do |f| %>
+  <%= f.collection_select :sub_forum, current_user.joined_forums, :id, :name, { prompt: "Select sub forum" }, { name: "sub_forum_id" } %> <br><br>
+  <%= f.text_area :content, { name: "content" }  %> <br><br>
+  <%= f.submit :submit %>
+<% end %>

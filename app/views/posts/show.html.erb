@@ -1,0 +1,19 @@
+<%= javascript_include_tag "close-modal.js" %>
+<%= render "post", post: @post %>
+
+<button type="button" data-toggle="modal" data-target="#myModal">Edit</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= form_tag post_path, method: "PATCH", remote: true do %>
+          <%= text_area_tag :content, @post.content %>
+          <%= submit_tag :submit, id: "submit_btn" %>
+        <% end %>
+      </div>
+  </div>
+</div>
