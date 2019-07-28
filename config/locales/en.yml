@@ -9,11 +9,13 @@ en:
   your_profile: "Your Profile"
   search: "Search"
   submit: "Submit"
-  sub_forums: "Sub Forums"
+  view: "View"
+  not_authorized: "You can not perform this action"
   join: "Join"
   create_post: "Create Post"
   delete: "Delete"
   confirm: "You sure?"
+  please_log_in: "Please Login"
   static_pages:
     home:
       trending_today: "Trending Today"
@@ -25,7 +27,13 @@ en:
       forget_password: "Forgot password"
       remember_me: "Remember me on this computer"
       sign_up_now: "Sign up now!"
+    create:
+      invalid_email_password: "Invalid email/password combination"
+    check_email_for_account_activation: "Check email for account activation"
   users:
+    nav_profile:
+      profile: "Profile"
+      created_sub_forums: "Created Sub Forums"
     new:
       name: "Name"
       email: "Email"
@@ -33,6 +41,16 @@ en:
       create_my_account: "Create my account"
     create:
       account_activation: "Check your email for account activation"
+    show:
+      update_my_account: "Update my account"
+      change_picture: "Change picture"
+    user_not_found: "User not found"
+    update:
+      profile_updated: "Profile updated"
+    overview:
+      recent_post: "Recent post"
+    uneditable_profile:
+      joined_at: "Joined at"
   user_mailer:
     account_activation:
       activate: "Active account"
@@ -52,6 +70,11 @@ en:
     create:
       password_reset: "Check email for password reset guidelines"
       email_not_found: "Email not found"
+    update:
+      cannot_be_empty: "Can not be empty"
+      password_has_been_reset: "password has been reset"
+  sub_forums:
+    sub_forum_not_found: "Sub forum not found"
   members:
     leave:
       leave: "LEAVE"
@@ -60,3 +83,4 @@ en:
   shared:
     trending_sub_forum:
       join: "JOIN"
+  the_form_contains: "The form contains"

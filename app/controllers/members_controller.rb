@@ -44,7 +44,7 @@ class MembersController < ApplicationController
   def logged_in_user
     return if logged_in?
     store_current_location
-    flash[:warning] = t ".please_log_in"
+    flash[:warning] = t "please_log_in"
     redirect_to login_url
   end
 end

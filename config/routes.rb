@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root "static_pages#home"
   
   get "/signup", to: "users#new"
-  resources :users, only: %i(show new create)
+  post "/signup", to: "users#create"
+  resources :users, only: %i(show new create update)
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
@@ -15,4 +16,6 @@ Rails.application.routes.draw do
   post "/submit", to: "posts#create"
   resources :posts, only: %i(show update)
   get "/search", to: "searchs#new"
+  get "/users/:id/created_sub_forums",
+    to: "users#show_created_sub_forums", as: "created_sub_forums"
 end

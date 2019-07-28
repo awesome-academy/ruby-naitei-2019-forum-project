@@ -1,15 +1,21 @@
-<h1>
-  <% if @user.avatar? %>
-    <%= image_tag @user.avatar.url %>
-  <% else %>
-    <%= image_tag "default.png" %>
-  <% end %>
-  <%= @user.name %>
-  <%= @user.email %>
-  <% if @user.sub_forums.any? %>
-    <h3>(<%= "#{t :sub_forums} #{@user.sub_forums.size}" %>)</h3>
-    <ol class="sub_forum_preview">
-      <%= render partial: "sub_forums/sub_forum_preview", collection: @sub_forums %>
-    </ol>
-  <% end %>
-</h1>
+<div class="row has-margin-row">
+  <%= render "nav_profile", user: @user, index_to_active: 0 %>
+</div>
+<div class="row has-margin-row">
+  <div class="col-4">
+    <% if logged_in? and current_user?(@user) %>
+      <%= render "edit_profile_picture" %>
+    <% else %>
+      <%= render "uneditable_profile" %>
+    <% end %>
+  </div>
+  <div class="col-8">
+    <% if logged_in? && current_user?(@user) %>
+      <% provide(:title, nil) %>
+      <% provide(:button_text, t(".update_my_account")) %>
+      <%= render "form" %>
+    <% else %>
+       <%= render "overview" %>
+    <% end %>
+  </div>
+</div>
