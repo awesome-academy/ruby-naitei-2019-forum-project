@@ -42,12 +42,23 @@ module SessionsHelper
     cookies.delete :remember_token
   end
 
-  def redirect_back_or default
-    redirect_to(session[:forwarding_url] || default)
+  def store_location
+    if request.method == "POST"
+      session[:forwarding_url] = request.referrer
+    else
+      session[:forwarding_url] = request.original_url
+    end
+  end
+  
+  def redirect_back_or default_url
+    redirect_to session[:forwarding_url] || default_url
     session.delete :forwarding_url
   end
 
-  def store_location
-    session[:forwarding_url] = request.original_url if request.get?
+  def logged_in_user
+    return if logged_in?
+    store_location
+    flash[:warning] = t :not_log_in_warning
+    redirect_to login_url
   end
 end

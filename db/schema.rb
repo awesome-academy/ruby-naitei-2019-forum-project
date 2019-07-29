@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 20190722020456) do
+ActiveRecord::Schema.define(version: 20190724093114) do
 
   create_table "members", force: :cascade do |t|
     t.integer "sub_forum_id"
@@ -10,6 +10,15 @@ ActiveRecord::Schema.define(version: 20190722020456) do
     t.index ["sub_forum_id"], name: "index_members_on_sub_forum_id"
     t.index ["user_id"], name: "index_members_on_user_id"
     t.index ["user_type"], name: "index_members_on_user_type"
+  end
+
+  create_table "post_interactions", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "post_id"
+    t.integer "vote"
+    t.integer "interaction_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|

@@ -28,23 +28,12 @@ class MembersController < ApplicationController
 
   def load_member
     @member = Member.find_by id: params[:id]
-    redirect_to root_url if @member.nil?
+    redirect_to root_url unless @member
   end
 
   def load_user
     @forum = SubForum.find_by id: params[:sub_forum_id]
     flash[:notice] = ".not_a_forum_warning"
-    redirect_to root_url if @forum.nil?
-  end
-
-  def store_current_location
-    session[:forwarding_url] = request.referrer
-  end
-
-  def logged_in_user
-    return if logged_in?
-    store_current_location
-    flash[:warning] = t "please_log_in"
-    redirect_to login_url
+    redirect_to root_url unless @forum
   end
 end
