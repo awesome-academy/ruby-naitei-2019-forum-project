@@ -12,7 +12,9 @@ User.create!(name: "Example User",
   User.create!(name: name,
                email: email,
                password: password,
-               password_confirmation: password)
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.zone.now)
 end
 
 users = User.all
@@ -24,3 +26,9 @@ users.each do |user|
     user.sub_forums.create!(name: name, description: description)
   end
 end
+
+u = User.find(1)
+s = SubForum.find(1)
+m = Member.create!(user_id: u.id, sub_forum_id: s.id)
+p = Post.create!(member_id: m.id, content: "123456")
+pi = PostInteraction.create!(member_id: m.id, post_id: p.id)

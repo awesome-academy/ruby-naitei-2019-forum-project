@@ -1,0 +1,11 @@
+<div id="post-vote" >
+  <%= render "posts/p_interaction", {
+    interaction_type: Settings.post_vote,
+    vote_value: Settings.upvote,
+    submit_title: "upvote"} %>
+  <%= post.votes %>
+  <%= render "posts/p_interaction", {
+    interaction_type: Settings.post_vote,
+    vote_value: Settings.downvote,
+    submit_title: "downvote"} %>
+</div>

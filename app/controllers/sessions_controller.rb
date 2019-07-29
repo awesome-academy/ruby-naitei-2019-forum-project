@@ -23,8 +23,7 @@ class SessionsController < ApplicationController
     if user.activated?
       log_in user
       params[:session][:remember_me] == 1 ? remember(user) : forget(user)
-      redirect_to(session[:forwarding_url] || root_url)
-      session.delete :forwarding_url
+      redirect_back_or root_url
     else
       flash[:warning] = t ".check_email_for_account_activation"
       redirect_to root_url
