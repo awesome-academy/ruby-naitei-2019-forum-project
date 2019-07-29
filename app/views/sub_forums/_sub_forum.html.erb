@@ -1,2 +1,2 @@
-<%= sub_forum[:name] %> </br>
-<%= sub_forum[:description] %></br></br>
+<%= link_to sub_forum.name, sub_forum_path(sub_forum.id) %><br>
+<%= sub_forum.description %><br><br>
