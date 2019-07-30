@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  has_many :comments
   belongs_to :member
 
   has_many :users_interacted, class_name: PostInteraction.name,
@@ -13,5 +14,10 @@ class Post < ApplicationRecord
   def self.search q
     ApplicationController.helpers.search q, ngram = 3, Post, Settings.relevant_record,
       [:id, 0], [:content, Settings.post.content]
+  end
+
+  def sub_forum
+    member = Member.find_by id: member_id
+    SubForum.find_by id: member.sub_forum_id
   end
 end

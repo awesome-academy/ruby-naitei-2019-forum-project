@@ -16,7 +16,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comments = @post.comments.where(parent_id: nil)
+  end
 
   def update
     respond_to do |f|

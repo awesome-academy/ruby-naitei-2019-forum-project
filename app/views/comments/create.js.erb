@@ -1,0 +1,7 @@
+$('#comment_content').val('');
+
+<% if @comment.parent_id.nil? %>
+    $('#comment-section').append("<%= j render partial: @comment %>");
+<% else %>
+    $('#comment-<%= @comment.parent_id %>').children('ul').append("<%= j render partial: @comment %>");
+<% end %>

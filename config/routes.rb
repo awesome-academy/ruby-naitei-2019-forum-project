@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i(show update)
   post "/posts/:id", to: "post_interactions#update"
   get "/search", to: "searchs#new"
+  resources :comments, only: %i(new show create)
   get "/users/:id/created_sub_forums",
     to: "users#show_created_sub_forums", as: "created_sub_forums"
 end

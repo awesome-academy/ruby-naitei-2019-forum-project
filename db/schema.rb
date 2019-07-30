@@ -1,4 +1,13 @@
-ActiveRecord::Schema.define(version: 20190724093114) do
+ActiveRecord::Schema.define(version: 20190726085502) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "parent_id"
+    t.integer "member_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.integer "sub_forum_id"

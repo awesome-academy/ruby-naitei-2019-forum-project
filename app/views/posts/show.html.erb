@@ -5,6 +5,11 @@
 
 <button type="button" data-toggle="modal" data-target="#myModal">Edit</button>
 
+<%= render "comments/new" %>
+<div id="comment-section">
+  <%= render @comments %>
+</div>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

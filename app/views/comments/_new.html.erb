@@ -1,0 +1,5 @@
+<%= form_tag comments_path, remote: true do %>
+  <%= hidden_field_tag :post_id, @post.id %>
+  <%= text_area_tag :comment_content %>
+  <%= submit_tag :submit, id: "comment-submit-btn" %>
+<% end %>
