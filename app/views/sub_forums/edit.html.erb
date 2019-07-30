@@ -1,0 +1,18 @@
+<div class="row has-margin-row">
+  <div class="col-3">
+    <ul class="list-group">
+      <li class="list-group-item active">Members</li>
+      <li class="list-group-item">Posts</li>
+      <li class="list-group-item">Mods</li>
+    </ul>
+    <br>
+    <%= render "edit_sub_forum_form" %>
+    <br>
+  </div>
+  <div class="col-9">
+    <%= render "sub_forum_member_list", items: @admin %>
+    <%= render "sub_forum_member_list", items: @mods %>
+    <%= render "sub_forum_member_list", items: @normal_members %>
+    <%= render "sub_forum_member_list", items: @banned_members %>
+  </div>
+</div>

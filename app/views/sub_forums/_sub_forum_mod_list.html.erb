@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">
+    <%= yield(:header_text) %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @mods.each do |mod| %>
+      <li class="list-group-item">
+        <%= mod.user.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>

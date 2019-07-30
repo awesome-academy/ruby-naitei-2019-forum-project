@@ -19,16 +19,18 @@ class PostsController < ApplicationController
   def show; end
 
   def update
-    respond_to do |f|
-      f.html{redirect_to post_url}
-      f.js
-    end if @post.update_attributes post_params
+    if @post.update_attributes post_params
+      respond_to do |f|
+        f.html{redirect_to post_url}
+        f.js
+      end
+    end
 
-    flash[:warning] = t ".fail_to_edit post"
+    flash[:warning] = t ".create.fail_to_edit_post"
   end
 
   private
-  
+
   def load_member
     @member = Member.find_by sub_forum_id: params[:sub_forum_id],
                              user_id: current_user.id

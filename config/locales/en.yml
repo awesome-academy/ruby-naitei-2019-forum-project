@@ -9,17 +9,21 @@ en:
   your_profile: "Your Profile"
   search: "Search"
   submit: "Submit"
-  view: "View"
-  not_authorized: "You can not perform this action"
-  join: "Join"
-  create_post: "Create Post"
-  view: "View"
-  not_authorized: "You can not perform this action"
-  join: "Join"
-  create_post: "Create Post"
   delete: "Delete"
+  view: "View"
+  not_authorized: "You can not perform this action"
+  update: "Update"
+  join: "Join"
+  create_post: "Create Post"
+  leave: "Leave"
+  member_string: "member"
+  moderators: "Moderators"
+  success: "Operation Success"
+  error_occurred: "Error occurred"
   confirm: "You sure?"
   please_log_in: "Please Login"
+  forum_string: "Forums"
+  post_string: "Posts"
   static_pages:
     home:
       trending_today: "Trending Today"
@@ -44,13 +48,16 @@ en:
       confirmation: "Confirmation"
       create_my_account: "Create my account"
     create:
-      account_activation: "Check your email for account activation"
+      check_email_for_account_activation: "Check your email for account activation"
+      account_activation: "Account Activation"
     show:
       update_my_account: "Update my account"
       change_picture: "Change picture"
     user_not_found: "User not found"
     update:
       profile_updated: "Profile updated"
+    form:
+      confirmation: "Password confirmation"
     overview:
       recent_post: "Recent post"
     uneditable_profile:
@@ -59,9 +66,7 @@ en:
     account_activation:
       activate: "Active account"
       account_activation: "Account Activation"
-    password_reset:
-      password_reset: "Password reset"
-      reset_password: "Reset password"
+    password_reset: "Password reset"
   account_activations:
     edit:
       account_activated: "Account activated"
@@ -77,14 +82,30 @@ en:
     update:
       cannot_be_empty: "Can not be empty"
       password_has_been_reset: "password has been reset"
+  application:
+    please_log_in: "Please Login"
   sub_forums:
     sub_forum_not_found: "Sub forum not found"
+    edit_sub_forum_form:
+      update_description: "Update Description"
+    update:
+      sub_forum_updated: "Subforum update successfully"
+    post_preview_list:
+      posted_by: "Posted by"
+      comments_string: "comments"
+      bookmark: "Bookmark"
+      report: "Report"
   members:
     leave:
       leave: "LEAVE"
     join:
       join: "JOIN"
+    not_a_forum_warning: "Not a forum"
   shared:
     trending_sub_forum:
       join: "JOIN"
   the_form_contains: "The form contains"
+  posts:
+    create:
+      success_create_post: "Create post succefully"
+      fail_to_edit_post: "Failed to edit post"

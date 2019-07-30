@@ -1,0 +1,30 @@
+<% posts.each do |post| %>
+  <div class="card popular-post">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-1">
+          <i class="material-icons">
+            arrow_drop_up
+          </i>
+          <i class="material-icons">
+            arrow_drop_down
+          </i>
+        </div>
+        <div class="col-11">
+          <h5>
+            <%= link_to post.content, post %>
+          </h5>
+          <p class="card-text"><%= "#{t ".posted_by"} #{post.member.user.name}" %> </p>
+          <%= link_to t(".comments_string"), nil %>
+          <%= link_to t(".bookmark"), nil %>
+          <%= link_to t(".report"), nil %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
