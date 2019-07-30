@@ -1,8 +1,11 @@
-<div class="card bg-dark text-white">
-  <img src="https://via.placeholder.com/300x200/000000/000000" class="card-img" alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title">Some post</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet</p>
-    <p class="card-text">Last updated 3 mins ago</p>
+<div class="card text-white" style="background-color: blue;">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= link_to post.title, post, style: "color: white;"%>
+    </h5>
+    <p class="card-text"><%= post.content %></p>
+    <p class="card-text">
+      <%= "#{t("posted_at")} #{time_ago_in_words(post.created_at)} ago"%>
+    </p>
   </div>
 </div>

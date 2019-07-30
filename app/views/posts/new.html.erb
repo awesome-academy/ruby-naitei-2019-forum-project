@@ -1,5 +1,29 @@
-<%= form_for :posts do |f| %>
-  <%= f.collection_select :sub_forum, current_user.joined_forums, :id, :name, { prompt: "Select sub forum" }, { name: "sub_forum_id" } %> <br><br>
-  <%= f.text_area :content, { name: "content" }  %> <br><br>
-  <%= f.submit :submit %>
+<%= form_for :posts, html: {class: "form-login-signup"} do |f| %>
+  <div class="form-group">
+    <h4>Create your post</h4>
+  </div>
+  <div class="form-group">
+    <%= f.collection_select :sub_forum,
+                            current_user.not_banned_forums,
+                            :id, :name,
+                            { prompt: "Select sub forum"},
+                            { name: "sub_forum_id",
+                              class: "form-control" }
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title,
+        { name: "title", class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content,
+          { name: "content", class: "form-control" } %>
+  </div>
+  <div class="form-group">
+    <%= f.submit :submit, class: "btn btn-primary" %>
+  </div>
 <% end %>

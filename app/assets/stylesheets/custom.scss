@@ -1,12 +1,7 @@
 @import 'bootstrap';
 
 $light-blue: #DAE0E6;
-
-.no-side-padding {
-  padding-left: 0;
-  padding-right: 0;
-}
-
+$blue: #37A6FA;
 .has-margin-row {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -42,3 +37,20 @@ body {
   z-index: 99;
 }
 
+.jumbotron{
+  background-color: $blue;
+  color: white;
+}
+
+.full-width{
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.rounded-circle{
+  height: 150px;
+  width: auto;
+  margin: auto;
+  display: block;
+}

@@ -23,12 +23,22 @@ users.each do |user|
   10.times do
     name = Faker::Name.name
     description = Faker::Lorem.sentence(5)
-    user.sub_forums.create!(name: name, description: description)
+    sub_forum = user.sub_forums.create!(name: name, description: description)
+    user.join sub_forum, Settings.admin_forum
   end
 end
 
-u = User.find(1)
-s = SubForum.find(1)
-m = Member.create!(user_id: u.id, sub_forum_id: s.id)
-p = Post.create!(member_id: m.id, content: "123456")
-pi = PostInteraction.create!(member_id: m.id, post_id: p.id)
+sub_forums = SubForum.all
+
+sub_forums.each do |sub|
+  users = User.where.not(id: sub.user_id).order("RANDOM()").first(5)
+  users.each { |user| user.join sub, [Settings.mod_forum, Settings.member_forum].sample }
+end
+
+members = Member.all
+
+members.each do |member|
+  title = Faker::Name.name
+  content = Faker::Lorem.sentence(5)
+  Post.create!(member_id: member.id, title: title, content: content)
+end

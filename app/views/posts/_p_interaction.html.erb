@@ -1,5 +1,17 @@
 <%= form_tag post_path, remote: true do %>
   <%= hidden_field_tag "interaction_type", interaction_type %>
   <%= hidden_field_tag "vote", vote_value %>
-  <%= submit_tag submit_title %>
+  <%= hidden_field_tag "post_id", post_id %>
+
+  <% if vote_value == Settings.upvote %>
+    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+      <i class="material-icons"> arrow_drop_up </i>
+    <% end %>
+  <% elsif vote_value == Settings.downvote %>
+    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+      <i class="material-icons"> arrow_drop_down </i>
+  <% end %>
+  <% else %>
+    <%= submit_tag t(".save") %>
+  <% end %>
 <% end %>

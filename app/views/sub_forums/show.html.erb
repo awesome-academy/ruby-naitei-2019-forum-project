@@ -1,2 +1,20 @@
-<%= @sub_forum.name %>
-<%= @sub_forum.description %>
+<div class="has-margin-row row">
+  <div class="col-12">
+    <div class="jumbotron">
+      <h1 class="display-4"><%= @sub_forum.name %></h1>
+      <p class="lead"><%= @sub_forum.description %></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-9">
+      <%= render "post_preview_list", posts: @posts %>
+  </div>
+
+  <div class="col-3">
+    <%= render "sub_forum_details" %>
+    <% provide(:header_text, t("moderators")) %>
+    <%= render "sub_forum_mod_list"%>
+  </div>
+</div>

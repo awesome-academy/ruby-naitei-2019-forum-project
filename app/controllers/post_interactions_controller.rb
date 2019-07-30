@@ -16,9 +16,9 @@ class PostInteractionsController < ApplicationController
         interact :interaction_type
       end
     end
-    
+
     respond_to do |f|
-      f.html {redirect_to @post}
+      f.html{redirect_to @post}
       f.js
     end
   end
@@ -29,18 +29,18 @@ class PostInteractionsController < ApplicationController
     @interaction.update_attributes type =>
       (@interaction.send(type) == params[type].to_i ? nil : params[type])
   end
-  
+
   def interaction_params
-    params.permit %w(interaction_type vote)
+    params.permit %w(interaction_type vote post_id)
   end
 
   def load_post
-    @post = Post.find_by id: params[:id]
+    @post = Post.find_by id: params[:post_id]
     redirect_to root_url unless @post
   end
 
   def load_member
-    p_member = Member.find_by id: @post.member_id 
+    p_member = Member.find_by id: @post.member_id
 
     @member = Member.find_by user_id: current_user.id,
       sub_forum_id: p_member.sub_forum_id

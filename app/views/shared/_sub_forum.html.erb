@@ -4,11 +4,14 @@
       <h5 class="card-title"><%= sub_forum.name %></h5>
       <p class="card-text"><%= sub_forum.description %></p>
       <p class="card-text">
-        <small class="text-muted">Created at 3 mins ago</small>
+        <small class="text-muted">
+          Created at 3 mins ago
+        </small>
       </p>
       <%= link_to t("view"), sub_forum, class: "btn btn-primary" %>
       <% if current_user && current_user?(sub_forum.user) %>
-        <%= link_to t("delete"), sub_forum, method: :delete, class: "btn btn-danger" %>
+        <%= link_to t("update"), edit_sub_forum_path(sub_forum), class: "btn btn-primary" %>
+        <%= link_to t("delete"), sub_forum, method: :delete, class: "btn btn-danger float-right" %>
       <% end %>
     </div>
   </div>

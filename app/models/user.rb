@@ -62,10 +62,10 @@ class User < ApplicationRecord
     reset_sent_at < Settings.password_expired.hours.ago
   end
 
-  def join sub_forum
+  def join sub_forum, member_type
     joined_forums << sub_forum
     member = Member.find_by user_id: id, sub_forum_id: sub_forum.id
-    member.update_attributes user_type: Settings.normal_user
+    member.update_attributes user_type: member_type
   end
 
   def leave sub_forum
@@ -74,6 +74,12 @@ class User < ApplicationRecord
 
   def joined_forums? sub_forum
     joined_forums.include? sub_forum
+  end
+
+  def not_banned_forums
+    SubForum
+      .where(id: Member.where(user_id: self)
+      .where.not(user_type: Settings.banned_user).select(:sub_forum_id))
   end
 
   private

@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   resources :account_activations, only: :edit
-  resources :sub_forums, except: :edit
+  resources :sub_forums
+  resources :password_resets, only: %i(new create edit update)
+  resources :sub_forums
+  resources :members, only: %i(create destroy update)
   resources :password_resets, only: %i(new create edit update)
   resources :members, only: %i(create destroy)
   get "/submit", to: "posts#new"
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i(show update)
   post "/posts/:id", to: "post_interactions#update"
   get "/search", to: "searchs#new"
+  resources :comments, only: %i(new show create)
   get "/users/:id/created_sub_forums",
     to: "users#show_created_sub_forums", as: "created_sub_forums"
 end

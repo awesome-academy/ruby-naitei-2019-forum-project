@@ -1,31 +1,46 @@
 <div class="row has-margin-row">
-  <h4><%= t ".trending_today" %></h4>
+  <div class="col-12">
+    <h4><%= t ".trending_today" %></h4>
+  </div>
 </div>
 <div class="row">
-  <div class="card-deck">
-    <% 4.times do %>
-      <%= render "shared/trending_post" %>
-    <% end %>
+  <div class="col-12">
+    <div class="card-deck">
+      <% @trending_posts.each do |post| %>
+        <%= render "shared/trending_post", post: post %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="row has-margin-row">
-  <h4><%= t ".popular" %></h4>
+  <div class="col-6">
+    <% if current_user %>
+      <nav>
+        <div class="nav nav-pills" style="margin-top: 10px">
+          <%= link_to t(".popular"), root_path,
+                      class: "nav-item nav-link #{"active" unless params[:popular]}" %>
+          <%= link_to t("my_popular"), root_path(:popular => "personal"),
+                      class: "nav-item nav-link #{"active" if params[:popular]}" %>
+        </div>
+      </nav>
+    <% else %>
+      <h4><%= t ".popular" %></h4>
+  <% end %>
+  </div>
 </div>
 <div class="row">
-  <div class="col-9 no-side-padding">
-    <% 10.times do %>
-      <%= render "shared/popular_post" %>
+  <div class="col-9">
+    <% @popular_posts.each do |post| %>
+      <%= render "shared/post_preview", post: post %>
     <% end %>
   </div>
   <div class="col-3">
     <div class="card">
       <div class="card-body">
-        <p>
-          <%= link_to t("create_post"), submit_path,
-                class: "btn btn-primary", style: "width: 100%" %>
-        </p>
+        <%= link_to t("create_post"), submit_path,
+              class: "btn btn-primary full-width"%>
         <%= link_to t(".create_sub_forum"), new_sub_forum_path,
-              class: "btn btn-primary", style: "width: 100%" %>
+              class: "btn btn-primary full-width" %>
       </div>
     </div>
     <br>

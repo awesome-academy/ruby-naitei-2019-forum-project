@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def new; end
 
   def create
-    @post = Post.new member_id: @member.id, content: params[:content]
+    @post = Post.new member_id: @member.id, content: params[:content], title: params[:title]
 
     if @post.save
       flash[:notice] = t ".success_create_post"
@@ -16,19 +16,23 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comments = @post.comments.where(parent_id: nil)
+  end
 
   def update
-    respond_to do |f|
-      f.html{redirect_to post_url}
-      f.js
-    end if @post.update_attributes post_params
+    if @post.update_attributes post_params
+      respond_to do |f|
+        f.html{redirect_to post_url}
+        f.js
+      end
+    end
 
-    flash[:warning] = t ".fail_to_edit post"
+    flash[:warning] = t ".create.fail_to_edit_post"
   end
 
   private
-  
+
   def load_member
     @member = Member.find_by sub_forum_id: params[:sub_forum_id],
                              user_id: current_user.id
@@ -40,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit %i(content)
+    params.permit %i(content title)
   end
 
   def load_post

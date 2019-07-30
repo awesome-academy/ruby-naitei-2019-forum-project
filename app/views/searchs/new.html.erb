@@ -1,5 +1,24 @@
-<%= t ".forum" %><br>
-<%= render @forums %>
-
-<%= t ".post" %><br>
-<%= render partial: "posts/_post", collection: @posts %>
+<div class="row has-margin-row">
+  <div class="col-4">
+    <h4><%= t "forum_string" %></h4>
+    <% @forums.each do |sub_forum| %>
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-body">
+          <h5 class="card-title"><%= sub_forum.name %></h5>
+          <p class="card-text"><%= sub_forum.description %></p>
+          <%= link_to t("view"), sub_forum, class: "btn btn-primary" %>
+          <% if current_user && current_user?(sub_forum.user) %>
+            <%= link_to t("update"), edit_sub_forum_path(sub_forum), class: "btn btn-primary" %>
+            <%= link_to t("delete"), sub_forum, method: :delete, class: "btn btn-danger float-right" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-8">
+    <h4><%= t "post_string" %></h4>
+    <% @posts.each do |post| %>
+      <%= render "shared/post_preview", post: post %>
+    <% end %>
+  </div>
+</div>

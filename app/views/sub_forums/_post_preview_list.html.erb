@@ -1,0 +1,18 @@
+<% posts.each do |post| %>
+  <div class="card popular-post">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-1">
+          <%= render "posts/p_vote", post: post %>
+        </div>
+        <div class="col-11">
+          <h5>
+            <%= link_to post.title, post %>
+          </h5>
+          <p class="card-text"><%= "#{t ".posted_by"} #{post.member.user.name}" %> </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

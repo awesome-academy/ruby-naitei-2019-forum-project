@@ -3,11 +3,13 @@
   <head>
     <title>RedditClone</title>
     <%= render "layouts/rails_default" %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
   </head>
 
   <body>
     <%= render "layouts/navbar" %>
-    <div class="container">
+    <div class="container" style="margin-bottom: 50px;">
       <% flash.each do |message_type, message| %>
         <div aria-live="polite" aria-atomic="true" class="toast-area">
           <div class="toast" data-delay="2000">

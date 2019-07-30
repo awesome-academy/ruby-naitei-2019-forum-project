@@ -1,19 +1,19 @@
 <% if current_user.nil? %>
   <li class="list-group-item">
-    <%= trending_sub_forum.name %>
+    <%= link_to trending_sub_forum.name, trending_sub_forum %>
     <%= form_for :member, url: members_path do |f| %>
-      <%= f.submit t(".join"), class: "btn btn-primary float-right" %>
+      <%= f.submit t("join"), class: "btn btn-primary float-right" %>
     <% end %>
   </li>
 <% else %>
   <li class="list-group-item">
-    <%= trending_sub_forum.name %>
+    <%= link_to trending_sub_forum.name, trending_sub_forum %>
     <div id=<%= "join_form_#{trending_sub_forum.id}" %> >
       <% if current_user.joined_forums?(trending_sub_forum) %>
         <%= render "members/leave", forum_id: trending_sub_forum.id %>
       <% else %>
         <%= render "members/join", forum_id: trending_sub_forum.id %>
-      <% end %>
+    <% end %>
     </div>
   </li>
 <% end %>

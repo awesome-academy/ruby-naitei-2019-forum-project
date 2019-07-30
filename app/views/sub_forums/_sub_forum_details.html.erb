@@ -1,0 +1,30 @@
+<div class="card mb-3">
+  <div class="card-header">Subforum details</div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @sub_forum.name %></h5>
+    <div class="row" style="margin-bottom: 5px">
+      <div class="col-6">
+        <%= pluralize(@sub_forum.members.active_members.size, t("member_string")) %>
+      </div>
+      <div class="col-6" style="border-left: solid 1px;">
+        <%= @sub_forum.posts.size %>
+        <%= t "post_string" %>
+      </div>
+    </div>
+    <% if current_user.nil? || !current_user.joined_forums?(@sub_forum) %>
+      <%= form_for Member.new do |f| %>
+        <%= hidden_field_tag :sub_forum_id, @sub_forum.id %>
+        <%= f.submit t("join"), class: "btn btn-primary full-width" %>
+      <% end %>
+    <% elsif current_user? @sub_forum.user %>
+      <%= link_to t("update"), edit_sub_forum_path(@sub_forum), class: "btn btn-primary full-width" %>
+    <% else %>
+      <%= form_for current_user.members.find_by(user_id: current_user.id, sub_forum_id: @sub_forum.id),
+                   html: {method: :delete} do |f| %>
+        <%= f.submit t("leave"), class: "btn btn-primary full-width" %>
+      <% end %>
+    <% end %>
+    <%= link_to t("create_post"),
+                submit_path, class: "btn btn-primary full-width" %>
+  </div>
+</div>

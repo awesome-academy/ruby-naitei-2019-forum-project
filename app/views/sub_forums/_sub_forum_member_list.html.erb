@@ -1,0 +1,52 @@
+<% items.each do |item| %>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-3">
+        <div class="card-body">
+          <%= image_tag "default.png", class: "rounded-circle card-img" %>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title"><%= item.user.name %></h5>
+
+
+          <% if item.user_type == Settings.admin_forum %>
+            <p class="card-text">Admin</p>
+          <% elsif item.user_type == Settings.mod_forum %>
+            <p class="card-text">Mods</p>
+            <%= form_for(item) do |f| %>
+              <%= f.hidden_field :user_type, value: Settings.member_forum%>
+              <%= f.submit "Unmod", class: "btn btn-primary float-right" %>
+            <% end %>
+          <% elsif item.user_type == Settings.member_forum %>
+            <p class="card-text">Members</p>
+            <%= form_for(item) do |f| %>
+              <%= f.hidden_field :user_type, value: Settings.mod_forum %>
+              <%= f.submit "Mod", class: "btn btn-primary float-right" %>
+            <% end %>
+          <% elsif item.user_type == Settings.banned_user %>
+            <p class="card-text">Banned user</p>
+            <%= form_for(item) do |f| %>
+              <%= f.hidden_field :user_type, value: Settings.member_forum %>
+              <%= f.submit "Unban", class: "btn btn-primary float-right" %>
+            <% end %>
+          <% end %>
+
+
+          <% unless item.user_type == Settings.admin_forum || item.user_type == Settings.banned_user  %>
+            <%= form_for(item) do |f| %>
+              <%= f.hidden_field :user_type, value: Settings.banned_user %>
+              <%= f.submit "Ban", class: "btn btn-danger float-right", style: "margin-right: 5px" %>
+            <% end %>
+          <% end %>
+          <p class="card-text">
+            <small class="text-muted">
+              Joined since <%= time_ago_in_words(item.created_at) %>
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

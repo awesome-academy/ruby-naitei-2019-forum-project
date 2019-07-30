@@ -1,0 +1,34 @@
+<div id="comment-<%= comment.id %>">
+  <%= comment.content %>
+  <button id="reply-comment-<%= comment.id %>">Reply</button>
+  <ul>
+    <%= render comment.children %>
+  </ul>
+</div>
+
+  <script>
+    $('#reply-comment-<%= comment.id %>').on('click',function(){
+
+      reply_div = $('<div id="reply-section-<%= comment.id %>"</div>');
+      reply_form = $('<%= form_tag comments_path, remote: true %>');
+      reply_form.append('<input name="post_id", value=<%= @post.id %>, type="hidden" />');
+      reply_form.append('<input name="parent_id" value=<%= comment.id %> type="hidden" />');
+      reply_form.append('<textarea name="comment_content" />');
+      reply_form.append('<button id="reply-comment-<%= comment.id %>-btn">Reply</button>');
+      reply_div.append(reply_form);
+      reply_div.append('<button id="reply-section-<%= comment.id %>-close-btn">Close</button>');
+
+      $(this).after(reply_div);
+      $(this).attr("disabled", true);
+  });
+    
+$('body').on('click','#reply-comment-<%= comment.id %>-btn',function(){
+  $('#reply-section-<%= comment.id %>').hide();
+  $('#reply-comment-<%= comment.id %>').attr("disabled", false);
+  });
+
+$('body').on('click','#reply-section-<%= comment.id %>-close-btn',function(){
+  $('#reply-section-<%= comment.id %>').hide();
+  $('#reply-comment-<%= comment.id %>').attr("disabled", false);
+  });
+  </script>

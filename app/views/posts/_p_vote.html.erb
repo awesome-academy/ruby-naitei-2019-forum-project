@@ -1,11 +1,13 @@
-<div id="post-vote" >
+<div id="post-vote-<%= post.id %>" >
   <%= render "posts/p_interaction", {
     interaction_type: Settings.post_vote,
     vote_value: Settings.upvote,
-    submit_title: "upvote"} %>
-  <%= post.votes %>
+    post_id: post.id} %>
+  <span class="float-right" style="margin-right: 7px">
+    <%= post.votes %>
+  </span>
   <%= render "posts/p_interaction", {
     interaction_type: Settings.post_vote,
     vote_value: Settings.downvote,
-    submit_title: "downvote"} %>
+    post_id: post.id} %>
 </div>

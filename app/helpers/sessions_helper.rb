@@ -43,13 +43,13 @@ module SessionsHelper
   end
 
   def store_location
-    if request.method == "POST"
-      session[:forwarding_url] = request.referrer
-    else
-      session[:forwarding_url] = request.original_url
-    end
+    session[:forwarding_url] = if request.method == "POST"
+                                 request.referrer
+                               else
+                                 request.original_url
+                               end
   end
-  
+
   def redirect_back_or default_url
     redirect_to session[:forwarding_url] || default_url
     session.delete :forwarding_url

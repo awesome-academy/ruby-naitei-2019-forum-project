@@ -7,7 +7,7 @@
   <ul class="navbar-nav mr-auto">
     <%= form_for :searchs, url: search_path, method: :get, html: {class: "form-inline my-2 my-lg-0"} do |f| %>
       <%= search_field_tag :q, nil, class: "form-control mr-sm-2" %>
-      <%= f.submit t("search"), class: "btn btn-outline-sucess my-2 my-sm-0" %>
+      <%= f.submit t("search"), class: "btn btn-primary my-2 my-sm-0" %>
     <% end %>
   </ul>
   <% if logged_in? %>

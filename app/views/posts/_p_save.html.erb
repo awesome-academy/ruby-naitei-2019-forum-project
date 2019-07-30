@@ -1,6 +1,6 @@
-<div id="post-save">
+<div id="post-save-<%= post.id %>">
   <%= render "posts/p_interaction", {
     interaction_type: Settings.post_save,
     vote_value: nil,
-    submit_title: "save"} %>
+    post_id: post.id} %>
 </div>

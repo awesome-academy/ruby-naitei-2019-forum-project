@@ -1,15 +1,37 @@
 <%= javascript_include_tag "close-modal.js" %>
-<%= render "post", post: @post %>
-<%= render "p_vote", post: @post %>
-<%= render "p_save" %>
+<div class="row has-margin-row">
+  <div class="col-9">
+    <div class="card popular-post">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-1">
+            <%= render "posts/p_vote", post: @post %>
+          </div>
+          <div class="col-11">
+            <h5>
+              <%= link_to @post.title, @post %>
+            </h5>
+            <p class="card-text">
+              <%= @post.content %>
+            </p>
+            <p class="card-text"><%= "#{t "sub_forums.post_preview_list.posted_by"} #{@post.member.user.name}" %> </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <button type="button" data-toggle="modal" data-target="#myModal">Edit</button>
 
-<!-- Modal -->
+<%= render "comments/new" %>
+<div id="comment-section">
+  <%= render @comments %>
+</div>
+
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
         <%= form_tag post_path, method: "PATCH", remote: true do %>
@@ -17,5 +39,6 @@
           <%= submit_tag :submit, id: "submit_btn" %>
         <% end %>
       </div>
+    </div>
   </div>
 </div>
